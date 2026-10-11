@@ -1,0 +1,13 @@
+openai
+langchain
+autogen
+pymupdf
+streamlit
+langchain-core
+langchain-text-splitters
+langchain-community
+langchain-huggingface
+sentence-transformers
+faiss-cpu
+langchain-ollama
+ollama
