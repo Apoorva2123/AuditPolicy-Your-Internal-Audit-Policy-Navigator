@@ -269,40 +269,22 @@ flowchart TD
 
 The source PDF remains the authority for important decisions. Users can download it from the application to verify an answer.
 
-## Troubleshooting
+## Challenges & Solutions
 
-### Policy index not found
+### Challenge 1: Answer Precision
+The assistant sometimes referenced a related section instead of the exact policy or reference number.
 
-Run:
+**Solution:** Refined the prompt to prioritize explicit policy names and reference numbers.
 
-```powershell
-python rag_index_builder.py
-```
+### Challenge 2: Model Selection & Storage
+I chose Qwen 2.5:7B over Llama to explore an alternative local model for policy Q&A. However, storage constraints became a challenge.
 
-Then reload the Streamlit page.
+**Solution:** Cleaned up unnecessary files and am currently testing Qwen 2.5:1.5B, a smaller model that requires less storage.
 
-### Ollama model is not installed
+## Future Improvements
 
-Run:
-
-```powershell
-ollama pull qwen2.5:7b
-```
-
-Confirm that Ollama is running before starting or refreshing the app.
-
-### PDF changes are not reflected
-
-Rebuild the index after changing the PDF:
-
-```powershell
-python rag_index_builder.py
-```
-
-### Embedding or FAISS loading errors
-
-Make sure the same embedding model, `BAAI/bge-small-en-v1.5`, is used when building and loading the index. If the index is corrupted or was created with another embedding model, delete only the generated files inside `rag_faiss_index` and rebuild the index.
-
-## Notes on answer quality
-
-AuditPilot is retrieval-based, so its answers depend on the quality and coverage of the retrieved excerpts. The application intentionally tells the model not to invent policy details. Important business decisions should still be checked against the official PDF and escalated to the Finance team when the policy does not provide a clear answer.
+- **Explore Other Models:** Test different language models to improve answer accuracy and performance.
+- **Explore NLP Techniques:** Experiment with NLP concepts to improve document processing, retrieval, and answer quality.
+- **Support Multiple PDFs:** Enable users to upload and query multiple policy documents simultaneously.
+- **Explore ChromaDB:** Experiment with ChromaDB as an alternative vector database for storing and retrieving document embeddings.
+- **Enhance the UI:** Improve the user interface for a more intuitive and user-friendly experience.
